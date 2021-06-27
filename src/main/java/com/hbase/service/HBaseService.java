@@ -1,4 +1,4 @@
-package com.hbase.tool;
+package com.hbase.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.hadoop.hbase.CompareOperator;
@@ -10,9 +10,8 @@ import org.apache.hadoop.hbase.filter.RegexStringComparator;
 import org.apache.hadoop.hbase.filter.RowFilter;
 import org.apache.hadoop.hbase.filter.SingleColumnValueFilter;
 import org.apache.hadoop.hbase.util.Bytes;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,13 +24,12 @@ import java.util.Map;
  * Description: HBase工具类整理
  */
 @Slf4j
-@Repository
-public class HBaseTools {
+@Service
+public class HBaseService {
     private Connection connection;
-    public Admin admin;
+    private Admin admin;
 
-    @Autowired
-    public HBaseTools(@Qualifier("hbaseConnect") Connection connection) {
+    public HBaseService(@Qualifier("hbaseConnect") Connection connection) {
         this.connection = connection;
         try {
             admin = connection.getAdmin();
